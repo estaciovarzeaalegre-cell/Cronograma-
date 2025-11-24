@@ -1,71 +1,188 @@
-<!doctype html>
-<html lang='pt-BR'>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<meta charset='utf-8'>
+<meta charset="UTF-8">
 <title>Cronograma de Estudo 25.4 - Gestão Pública</title>
+
 <style>
-body{font-family:Arial;background:#f3fbff;margin:0;}
-header{background:#053b5c;color:white;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,0.2);}
-h1{margin:0;}
-.wrap{max-width:1100px;margin:auto;padding:20px;}
-.day{padding:16px;border-radius:12px;transition:.3s;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
-.day:hover{transform:scale(1.03);}
-.yellow{background:#ffe08a;} .teal{background:#98f5d0;} .blue{background:#a7e1ff;}
-.purple{background:#dab6ff;} .pink{background:#ffb6c8;}
-.card{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,0.12);margin-top:20px;}
-button{padding:8px 14px;border:0;border-radius:8px;background:#053b5c;color:white;cursor:pointer;}
-button:hover{background:#07517f;}
-#recados{background:#fff5cc;padding:15px;border-radius:12px;font-weight:bold;font-size:16px;
-  animation:fade 1s ease-in-out;}
-@keyframes fade{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
-.theme-badge{display:inline-block;background:#053b5c;color:white;padding:4px 10px;border-radius:8px;font-weight:bold;}
-.date-box{background:#ffefd6;padding:12px;border-radius:10px;margin-top:10px;}
-textarea{width:100%;height:120px;border-radius:10px;padding:10px;font-size:14px;}
-img.preview{max-width:180px;margin-top:10px;border-radius:8px;}
+body {
+  font-family: Arial;
+  background: #f3f3ff;
+  margin: 0;
+}
+header {
+  background: #0535b5;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+h1 { margin: 0; }
+.wrap {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+.day {
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+.day:hover {
+  transform: scale(1.03);
+}
+.yellow { background: #ffe680; }
+.teal { background: #98f5d0; }
+.blue { background: #a7e1ff; }
+.purple { background: #dab6ff; }
+.pink { background: #ffb6c8; }
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  margin-top: 20px;
+}
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #0535b5;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background: #0571f7;
+}
+.fade {
+  background: #fff5c5;
+  padding: 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  animation: fade 1s ease-in-out;
+}
+@keyframes fade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hidden { display: none; }
 </style>
 </head>
 
 <body>
+
 <header>
-  <h1>CRONOGRAMA DE ESTUDO 25.4 — GESTÃO PÚBLICA</h1>
+  <h1>Cronograma de Estudo — Gestão Pública 25.4</h1>
 </header>
 
-<div class='wrap'>
+<div class="wrap">
 
-<div style='display:flex;gap:10px;'>
-<button id='advanceWeek'>Avançar Tema →</button>
-<button id='resetWeek'>Resetar Temas</button>
-<span id='weekLabel' style='margin-left:auto;font-weight:bold;'>Tema atual: 01</span>
+  <div class="fade">
+    Clique em um dia abaixo para ver o conteúdo de estudo.
+  </div>
+
+  <!-- Dias da semana -->
+  <div class="day yellow" onclick="toggleCard('dia1')">
+    <strong>📅 Dia 1 — Introdução ao Curso</strong>
+  </div>
+
+  <div id="dia1" class="card hidden">
+    <h3>Conteúdo do Dia 1</h3>
+    <ul>
+      <li>Apresentação do curso</li>
+      <li>Organização do cronograma</li>
+      <li>Orientações gerais</li>
+    </ul>
+  </div>
+
+  <div class="day teal" onclick="toggleCard('dia2')">
+    <strong>📅 Dia 2 — Administração Pública</strong>
+  </div>
+
+  <div id="dia2" class="card hidden">
+    <h3>Conteúdo do Dia 2</h3>
+    <ul>
+      <li>Conceitos básicos da administração pública</li>
+      <li>Modelos de gestão</li>
+      <li>Princípios constitucionais</li>
+    </ul>
+  </div>
+
+  <div class="day blue" onclick="toggleCard('dia3')">
+    <strong>📅 Dia 3 — Políticas Públicas</strong>
+  </div>
+
+  <div id="dia3" class="card hidden">
+    <h3>Conteúdo do Dia 3</h3>
+    <ul>
+      <li>Ciclo das políticas públicas</li>
+      <li>Atores e processos</li>
+      <li>Implementação e avaliação</li>
+    </ul>
+  </div>
+  <div class="day purple" onclick="toggleCard('dia4')">
+    <strong>📅 Dia 4 — Gestão de Pessoas</strong>
+  </div>
+
+  <div id="dia4" class="card hidden">
+    <h3>Conteúdo do Dia 4</h3>
+    <ul>
+      <li>Competências profissionais</li>
+      <li>Liderança no setor público</li>
+      <li>Capacitação e desempenho</li>
+    </ul>
+  </div>
+
+  <div class="day pink" onclick="toggleCard('dia5')">
+    <strong>📅 Dia 5 — Finanças Públicas</strong>
+  </div>
+
+  <div id="dia5" class="card hidden">
+    <h3>Conteúdo do Dia 5</h3>
+    <ul>
+      <li>Orçamento público</li>
+      <li>Receitas e despesas do Estado</li>
+      <li>Lei de Responsabilidade Fiscal</li>
+    </ul>
+  </div>
+
+  <div class="day yellow" onclick="toggleCard('dia6')">
+    <strong>📅 Dia 6 — Ética e Transparência</strong>
+  </div>
+
+  <div id="dia6" class="card hidden">
+    <h3>Conteúdo do Dia 6</h3>
+    <ul>
+      <li>Código de Ética do Servidor</li>
+      <li>Mecanismos de controle social</li>
+      <li>Portais de transparência</li>
+    </ul>
+  </div>
+
+  <div class="day teal" onclick="toggleCard('dia7')">
+    <strong>📅 Dia 7 — Encerramento</strong>
+  </div>
+
+  <div id="dia7" class="card hidden">
+    <h3>Conteúdo do Dia 7</h3>
+    <ul>
+      <li>Revisão geral</li>
+      <li>Avaliação final</li>
+      <li>Certificação</li>
+    </ul>
+  </div>
+
 </div>
 
-<div id='recados' style='margin-top:15px;'>Mensagem da semana: 🌟 Vamos começar com foco total, Jabez!</div>
+<script>
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle("hidden");
+}
+</script>
 
-<h2>Rotina da Semana</h2>
-<div id='weekCards' style='display:flex;gap:16px;flex-wrap:wrap;'></div>
-
-<div class='card'>
-<h2>Metas Semanais</h2>
-<div><input type='checkbox'> Acessar SAVA e revisar o conteúdo</div>
-<div><input type='checkbox'> Fazer pelo menos 2 exercícios por dia</div>
-<div><input type='checkbox'> Registrar anotações importantes</div>
-<div><input type='checkbox'> Preparar-se para simulados</div>
-</div>
-
-<div class='card'>
-<h2>Datas importantes</h2>
-<div class='date-box'>Início agendamento Provas AV — 10/11/2025</div>
-<div class='date-box'>Início realização Provas AV — 15/11/2025</div>
-<div class='date-box'>Início dos Simulados — 25/11/2025</div>
-<div class='date-box'>Fim agendamentos AV — 01/12/2025</div>
-<div class='date-box'>Fim realização Provas AV — 05/12/2025</div>
-<div class='date-box'>Fim Simulados — 08/12/2025</div>
-</div>
-
-<div class='card'>
-<h2>Feedbacks, selfies e registros de estudo</h2>
-<textarea placeholder='Escreva seus feedbacks aqui...'></textarea>
-
-<p>Envie suas fotos e evidências:</p>
-<input type='file' id='upload1' accept='image/*'><div id='prev1'></div>
-<input type='file' id='upload2' accept='image/*'><div id='prev2'></div>
-<input type='file' id='upload3' accept='image/*'><div id='*
+</body>
+</html>
