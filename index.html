@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang='pt-BR'>
 <head>
@@ -23,6 +22,9 @@ button:hover{background:#07517f;}
 .date-box{background:#ffefd6;padding:12px;border-radius:10px;margin-top:10px;}
 textarea{width:100%;height:120px;border-radius:10px;padding:10px;font-size:14px;}
 img.preview{max-width:180px;margin-top:10px;border-radius:8px;}
+.remove {
+  background:#b30000 !important;
+}
 </style>
 </head>
 
@@ -67,9 +69,12 @@ img.preview{max-width:180px;margin-top:10px;border-radius:8px;}
 <textarea placeholder='Escreva seus feedbacks aqui...'></textarea>
 
 <p>Envie suas fotos e evidências:</p>
-<input type='file' id='upload1' accept='image/*'><div id='prev1'></div>
-<input type='file' id='upload2' accept='image/*'><div id='prev2'></div>
-<input type='file' id='upload3' accept='image/*'><div id='prev3'></div>
+
+<div id="uploadArea"></div>
+
+<button id="addPhotoBtn">➕ Adicionar foto</button>
+
+<div id="previewContainer" style="margin-top:15px;"></div>
 </div>
 
 <div class='card'>
@@ -133,19 +138,49 @@ document.getElementById("resetWeek").onclick = ()=>{
  render();
 };
 
-["upload1","upload2","upload3"].forEach(id=>{
- document.getElementById(id).addEventListener("change", e=>{
-   let file=e.target.files[0];
-   if(file){
-     let reader=new FileReader();
-     reader.onload=function(ev){
-       document.getElementById("prev"+id.replace("upload","")).innerHTML=
-       "<img class='preview' src='"+ev.target.result+"'>";
-     };
-     reader.readAsDataURL(file);
-   }
- });
-});
+
+// -----------------------------
+// UPLOAD DINÂMICO DE FOTOS
+// -----------------------------
+let uploadCount = 0;
+
+function addUploadInput() {
+    uploadCount++;
+
+    const container = document.getElementById("uploadArea");
+
+    const box = document.createElement("div");
+    box.id = "uploadBox" + uploadCount;
+    box.style.marginBottom = "10px";
+
+    box.innerHTML = `
+        <input type="file" id="file${uploadCount}" accept="image/*">
+        <button onclick="removeUpload(${uploadCount})" class="remove">🗑️ Apagar</button>
+        <div id="preview${uploadCount}" style="margin-top:10px;"></div>
+    `;
+
+    container.appendChild(box);
+
+    document.getElementById("file" + uploadCount).addEventListener("change", (e) => {
+        let file = e.target.files[0];
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function (ev) {
+                document.getElementById("preview" + uploadCount).innerHTML =
+                    `<img class="preview" src="${ev.target.result}">`;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+function removeUpload(id) {
+    document.getElementById("uploadBox" + id).remove();
+}
+
+document.getElementById("addPhotoBtn").addEventListener("click", addUploadInput);
+
+addUploadInput();
 
 render();
 </script>
